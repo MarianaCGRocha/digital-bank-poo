@@ -17,4 +17,16 @@ public class ContaCorrente {
 
     }
 
+    public int getAgencia() {
+        return agencia;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
 }
