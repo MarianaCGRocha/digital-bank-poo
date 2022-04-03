@@ -14,12 +14,13 @@ public abstract class Conta implements IConta {
         this.agencia = AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
         this.cliente = cliente;
-
     }
 
     @Override
     public void sacar(double valor) {
-        saldo -= valor;
+        if(valor <= saldo) {
+            saldo -= valor;
+        } else System.out.println("Limite não disponível para saque.");
     }
 
     @Override
@@ -29,8 +30,12 @@ public abstract class Conta implements IConta {
 
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        this.sacar(valor);
-        contaDestino.depositar(valor);
+        if(valor <= saldo) {
+            this.sacar(valor);
+            contaDestino.depositar(valor);
+        } else {
+            System.out.println("Limite não disponível para depósito.");
+        }
     }
 
     public int getAgencia() {
@@ -53,4 +58,5 @@ public abstract class Conta implements IConta {
     }
 
     public abstract void imprimirExtrato();
+
 }
